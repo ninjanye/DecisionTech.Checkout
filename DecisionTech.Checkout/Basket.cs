@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DecisionTech.Checkout
 {
     public class Basket
     {
-        private string _product;
+        private readonly List<string> _products = new List<string>();
         private readonly Dictionary<string, int> _prices;
 
         public Basket(Dictionary<string, int> prices = null)
@@ -14,16 +15,13 @@ namespace DecisionTech.Checkout
 
         public int Total()
         {
-            if (string.IsNullOrEmpty(_product))
-            {
-                return 0;
-            }
-            return _prices[_product];
+            return _products.Sum(p => _prices[p]);
         }
 
-        public void Add(string product)
+        public Basket Add(string product)
         {
-            _product = product;
+            _products.Add(product);
+            return this;
         }
     }
 }

@@ -35,5 +35,13 @@ namespace DecisionTech.Checkout.Tests.Unit
             int total = _basket.Total();
             Assert.That(total, Is.EqualTo(expected));
         }
+
+        [Test]
+        public void ReturnsTheCombinedPriceOfMultipleProducts()
+        {
+            _basket.Add("A").Add("B");
+            int total = _basket.Total();
+            Assert.That(total, Is.EqualTo(30));
+        }
     }
 }
