@@ -11,7 +11,7 @@ namespace DecisionTech.Checkout.Tests.Acceptance.Steps
         [Given(@"I have the following prices")]
         public void GivenTheFollowingPrices(Table pricesTable)
         {
-            var prices = new Dictionary<string, int>();
+            var prices = new PriceList();
             foreach (var row in pricesTable.Rows)
             {
                 int price = Convert.ToInt32(row["Price"]);
@@ -49,7 +49,7 @@ namespace DecisionTech.Checkout.Tests.Acceptance.Steps
         {
             if (!ScenarioContext.Current.ContainsKey("basket"))
             {
-                var prices = ScenarioContext.Current.Get<Dictionary<string, int>>("prices");
+                var prices = ScenarioContext.Current.Get<PriceList>("prices");
                 var discounts = ScenarioContext.Current.Get<List<Discount>>("discounts");
                 ScenarioContext.Current["basket"] = new Basket(prices, discounts);
             }

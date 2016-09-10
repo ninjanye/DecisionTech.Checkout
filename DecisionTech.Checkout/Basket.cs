@@ -6,10 +6,10 @@ namespace DecisionTech.Checkout
     public class Basket
     {
         private readonly ICollection<string> _products;
-        private readonly IDictionary<string, int> _prices;
+        private readonly PriceList _prices;
         private readonly IEnumerable<Discount> _discounts;
 
-        public Basket(IDictionary<string, int> prices, IEnumerable<Discount> discounts = null, ICollection<string> products = null)
+        public Basket(PriceList prices, IEnumerable<Discount> discounts = null, ICollection<string> products = null)
         {
             _prices = prices;
             _discounts = discounts ?? new List<Discount>();

@@ -7,18 +7,19 @@ namespace DecisionTech.Checkout.Tests.Unit
     public class BasketDiscounts
     {
         private Basket _basket;
-        private readonly Dictionary<string, int> _prices = new Dictionary<string, int>
-        {
-            {"A", 10},
-            {"B", 20}
-        };
+        private PriceList _prices;
 
         [SetUp]
         public void SetUp()
         {
+            _prices = new PriceList();
+            _prices.Add("A", 10);
+            _prices.Add("B", 20);
+
             var discountA = new Discount("A", 3, 5);
             var discountB = new Discount("B", 2, 20);
             var discounts = new List<Discount> { discountA, discountB };
+
             _basket = new Basket(_prices, discounts);
         }
 

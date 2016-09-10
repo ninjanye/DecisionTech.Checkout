@@ -8,16 +8,15 @@ namespace DecisionTech.Checkout.Tests.Unit
     public class BasketTotals
     {
         private Basket _basket;
-        private readonly Dictionary<string, int> _prices = new Dictionary<string, int>
-        {
-            {"A", 10},
-            {"B", 20}
-        };
+        private PriceList _priceList;
 
         [SetUp]
         public void SetUp()
         {
-            _basket = new Basket(_prices);
+            _priceList = new PriceList();
+            _priceList.Add("A", 10);
+            _priceList.Add("B", 20);
+            _basket = new Basket(_priceList);
         }
 
         [Test]
