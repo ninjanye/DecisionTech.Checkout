@@ -14,13 +14,14 @@ namespace DecisionTech.Checkout.Tests.Unit
             Assert.That(total, Is.EqualTo(0));
         }
 
-        [Test]
-        public void ReturnsThePriceOfAProduct()
+        [TestCase("A", 10)]
+        [TestCase("B", 20)]
+        public void ReturnsThePriceOfASingleProduct(string product, int expected)
         {
             var basket = new Basket();
-            basket.Add("A");
+            basket.Add(product);
             int total = basket.Total();
-            Assert.That(total, Is.EqualTo(10));
+            Assert.That(total, Is.EqualTo(expected));
         }
     }
 }

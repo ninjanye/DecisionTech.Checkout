@@ -6,7 +6,8 @@ namespace DecisionTech.Checkout
 
         public int Total()
         {
-            return _product == "A" ? 10 : 0;
+            return _product == "A" ? 10
+                 : _product == "B" ? 20 : 0;
         }
 
         public void Add(string product)
