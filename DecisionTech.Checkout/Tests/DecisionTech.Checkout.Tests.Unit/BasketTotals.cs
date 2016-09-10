@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace DecisionTech.Checkout.Tests.Unit
@@ -6,11 +7,23 @@ namespace DecisionTech.Checkout.Tests.Unit
     [TestFixture]
     public class BasketTotals
     {
+        private Basket _basket;
+        private readonly Dictionary<string, int> _prices = new Dictionary<string, int>
+        {
+            {"A", 10},
+            {"B", 20}
+        };
+
+        [SetUp]
+        public void SetUp()
+        {
+            _basket = new Basket(_prices);
+        }
+
         [Test]
         public void ReturnsZeroWhenWithoutProducts()
         {
-            var basket = new Basket();
-            int total = basket.Total();
+            int total = _basket.Total();
             Assert.That(total, Is.EqualTo(0));
         }
 
@@ -18,9 +31,8 @@ namespace DecisionTech.Checkout.Tests.Unit
         [TestCase("B", 20)]
         public void ReturnsThePriceOfASingleProduct(string product, int expected)
         {
-            var basket = new Basket();
-            basket.Add(product);
-            int total = basket.Total();
+            _basket.Add(product);
+            int total = _basket.Total();
             Assert.That(total, Is.EqualTo(expected));
         }
     }
