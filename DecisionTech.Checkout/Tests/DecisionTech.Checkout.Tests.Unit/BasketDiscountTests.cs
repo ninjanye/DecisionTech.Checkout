@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace DecisionTech.Checkout.Tests.Unit
 {
     [TestFixture]
-    public class BasketDiscounts
+    public class BasketDiscountTests
     {
         private Basket _basket;
         private PriceList _prices;

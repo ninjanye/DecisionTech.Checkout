@@ -30,7 +30,7 @@ namespace DecisionTech.Checkout
         public Basket Add(string product)
         {
             _products.Add(product);
-            return new Basket(_prices, _discounts, _products);
+            return this;
         }
     }
 }
