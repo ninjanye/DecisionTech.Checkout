@@ -71,12 +71,27 @@ namespace DecisionTech.Checkout.Tests.Acceptance
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sum the price of the basket", ((string[])(null)));
 #line 7
 this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Price"});
+            table1.AddRow(new string[] {
+                        "Bread",
+                        "100"});
+            table1.AddRow(new string[] {
+                        "Butter",
+                        "80"});
+            table1.AddRow(new string[] {
+                        "Milk",
+                        "115"});
 #line 8
- testRunner.Given("The basket has 1 bread, 1 butter, and 1 milk", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
+ testRunner.Given("I have a basket with the following prices", ((string)(null)), table1, "Given ");
+#line 13
+ testRunner.And("The basket has 1 bread, 1 butter, and 1 milk", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
  testRunner.When("I total the basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
- testRunner.Then("the total should be £3.10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 15
+ testRunner.Then("the total should be £2.95", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
