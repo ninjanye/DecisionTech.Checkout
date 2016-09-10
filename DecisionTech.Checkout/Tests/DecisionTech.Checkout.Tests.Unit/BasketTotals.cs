@@ -13,5 +13,14 @@ namespace DecisionTech.Checkout.Tests.Unit
             int total = basket.Total();
             Assert.That(total, Is.EqualTo(0));
         }
+
+        [Test]
+        public void ReturnsThePriceOfAProduct()
+        {
+            var basket = new Basket();
+            basket.Add("A");
+            int total = basket.Total();
+            Assert.That(total, Is.EqualTo(10));
+        }
     }
 }
