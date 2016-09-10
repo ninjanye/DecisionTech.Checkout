@@ -21,11 +21,11 @@ namespace DecisionTech.Checkout.Tests.Acceptance.Steps
             ScenarioContext.Current["basket"] = Basket.New(prices);
         }
 
-        [Given(@"The basket has 1 bread, 1 butter, and 1 milk")]
-        public void GivenTheBasketHasBreadButterAndMilk()
+        [Given(@"(?:[The basket has ]*)(\d+) (Bread|Butter|Milk)")]
+        public void GivenTheBasketHas(int itemCount, string product)
         {
             var basket = ScenarioContext.Current.Get<Basket>("basket");
-            basket.Add("Bread").Add("Butter").Add("Milk");
+            basket.Add(product);
         }
 
         [When(@"I total the basket")]

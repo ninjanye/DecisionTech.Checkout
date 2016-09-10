@@ -64,13 +64,9 @@ namespace DecisionTech.Checkout.Tests.Acceptance
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Sum the price of the basket")]
-        public virtual void SumThePriceOfTheBasket()
+        public virtual void FeatureBackground()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sum the price of the basket", ((string[])(null)));
 #line 7
-this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name",
@@ -86,12 +82,72 @@ this.ScenarioSetup(scenarioInfo);
                         "115"});
 #line 8
  testRunner.Given("I have a basket with the following prices", ((string)(null)), table1, "Given ");
-#line 13
- testRunner.And("The basket has 1 bread, 1 butter, and 1 milk", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Sum the price of the basket")]
+        public virtual void SumThePriceOfTheBasket()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sum the price of the basket", ((string[])(null)));
 #line 14
- testRunner.When("I total the basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+this.ScenarioSetup(scenarioInfo);
+#line 7
+this.FeatureBackground();
 #line 15
+ testRunner.Given("The basket has 1 Bread", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 16
+ testRunner.And("1 Butter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+ testRunner.And("1 Milk", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 18
+ testRunner.When("I total the basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 19
  testRunner.Then("the total should be £2.95", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Basket applies offers")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
+        public virtual void BasketAppliesOffers()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Basket applies offers", new string[] {
+                        "ignore"});
+#line 22
+this.ScenarioSetup(scenarioInfo);
+#line 7
+this.FeatureBackground();
+#line 23
+ testRunner.Given("the basket has 2 Butter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 24
+ testRunner.And("2 Bread", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 25
+ testRunner.When("I total the basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 26
+ testRunner.Then("the total should be £3.10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Basket applies discounts")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
+        public virtual void BasketAppliesDiscounts()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Basket applies discounts", new string[] {
+                        "ignore"});
+#line 29
+this.ScenarioSetup(scenarioInfo);
+#line 7
+this.FeatureBackground();
+#line 30
+ testRunner.Given("the basket has 4 Milk", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 31
+ testRunner.When("I total the basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 32
+ testRunner.Then("the total should be £3.10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
