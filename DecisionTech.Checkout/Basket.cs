@@ -33,6 +33,12 @@ namespace DecisionTech.Checkout
             {
                 discount = 5;
             }
+
+            if (_products.Count(p => p == "B") == 4)
+            {
+                discount = 20;
+            }
+
             return discount;
         }
 
