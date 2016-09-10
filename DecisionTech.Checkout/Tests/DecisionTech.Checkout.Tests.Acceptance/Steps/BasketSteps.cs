@@ -51,7 +51,7 @@ namespace DecisionTech.Checkout.Tests.Acceptance.Steps
             {
                 var prices = ScenarioContext.Current.Get<Dictionary<string, int>>("prices");
                 var discounts = ScenarioContext.Current.Get<List<Discount>>("discounts");
-                ScenarioContext.Current["basket"] = Basket.New(prices, discounts);
+                ScenarioContext.Current["basket"] = new Basket(prices, discounts);
             }
         }
 
