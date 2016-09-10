@@ -43,5 +43,13 @@ namespace DecisionTech.Checkout.Tests.Unit
             Assert.That(total, Is.EqualTo(45));
         }
 
+        [Test]
+        public void BasketAppliesDiscountsMultipleTimes()
+        {
+            _basket.Add("A").Add("A").Add("A").Add("A").Add("A").Add("A");
+            int total = _basket.Total();
+            Assert.That(total, Is.EqualTo(50));
+        }
+
     }
 }

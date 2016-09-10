@@ -34,7 +34,15 @@ namespace DecisionTech.Checkout
             {
                 return 0;
             }
-            return products.Count(p => p == _product) == _volume ? _deduction : 0;
+
+            int total = 0;
+            int productCount = products.Count(p => p == _product);
+            while (productCount >= _volume)
+            {
+                total += _deduction;
+                productCount -= _volume;
+            }
+            return total;
         }
     }
 }

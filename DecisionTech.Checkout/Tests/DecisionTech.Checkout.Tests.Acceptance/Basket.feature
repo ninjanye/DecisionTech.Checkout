@@ -33,3 +33,9 @@ Scenario: Basket applies discounts
 	When I total the basket
 	Then the total should be £3.45
 
+Scenario: Basket applies multiple discounts
+	Given the basket has 2 Butter
+	And 1 Bread
+	And 8 Milk
+	When I total the basket
+	Then the total should be £9.00
