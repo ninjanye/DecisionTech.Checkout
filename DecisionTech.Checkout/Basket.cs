@@ -1,16 +1,23 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace DecisionTech.Checkout
 {
     public class Basket
     {
-        private readonly List<string> _products = new List<string>();
+        private readonly List<string> _products;
         private readonly Dictionary<string, int> _prices;
 
-        public Basket(Dictionary<string, int> prices = null)
+        public static Basket New(Dictionary<string, int> prices)
         {
-            _prices = prices ?? new Dictionary<string, int>();
+            return new Basket(prices, new List<string>());
+        }
+
+        private Basket(Dictionary<string, int> prices, List<string> products = null)
+        {
+            _prices = prices;
+            _products = products ?? new List<string>();
         }
 
         public int Total()
@@ -21,7 +28,7 @@ namespace DecisionTech.Checkout
         public Basket Add(string product)
         {
             _products.Add(product);
-            return this;
+            return new Basket(_prices, _products);
         }
     }
 }

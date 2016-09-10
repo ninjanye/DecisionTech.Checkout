@@ -17,7 +17,7 @@ namespace DecisionTech.Checkout.Tests.Unit
         [SetUp]
         public void SetUp()
         {
-            _basket = new Basket(_prices);
+            _basket = Basket.New(_prices);
         }
 
         [Test]
