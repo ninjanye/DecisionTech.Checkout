@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -24,7 +23,7 @@ namespace DecisionTech.Checkout.Tests.Acceptance.Steps
         [Given(@"I have the following discounts")]
         public void GivenTheFollowingDiscounts(Table discountsTable)
         {
-            var discounts = new List<Discount>();
+            var discounts = new Discounts();
             foreach (var row in discountsTable.Rows)
             {
                 var product = row["Product"];
@@ -56,7 +55,7 @@ namespace DecisionTech.Checkout.Tests.Acceptance.Steps
             if (!ScenarioContext.Current.ContainsKey("basket"))
             {
                 var prices = ScenarioContext.Current.Get<PriceList>("prices");
-                var discounts = ScenarioContext.Current.Get<List<Discount>>("discounts");
+                var discounts = ScenarioContext.Current.Get<Discounts>("discounts");
                 ScenarioContext.Current["basket"] = new Basket(prices, discounts);
             }
         }

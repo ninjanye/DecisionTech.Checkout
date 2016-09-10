@@ -8,12 +8,12 @@ namespace DecisionTech.Checkout
     {
         private readonly ICollection<string> _products;
         private readonly PriceList _prices;
-        private readonly IEnumerable<Discount> _discounts;
+        private readonly Discounts _discounts;
 
-        public Basket(PriceList prices, IEnumerable<Discount> discounts = null, ICollection<string> products = null)
+        public Basket(PriceList prices, Discounts discounts = null, ICollection<string> products = null)
         {
             _prices = prices;
-            _discounts = discounts ?? new List<Discount>();
+            _discounts = discounts ?? new Discounts();
             _products = products ?? new List<string>();
         }
 

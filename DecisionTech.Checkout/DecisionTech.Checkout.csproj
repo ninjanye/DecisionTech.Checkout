@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="Basket.cs" />
     <Compile Include="Discount.cs" />
+    <Compile Include="Discounts.cs" />
     <Compile Include="PriceList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

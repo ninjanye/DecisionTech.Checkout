@@ -17,7 +17,7 @@ namespace DecisionTech.Checkout.Tests.Unit
             _prices.Add("B", 20);
 
             var discount = Discount.CrossProductDiscount("B", 2, "A", 5);
-            var discounts = new List<Discount> {discount};
+            var discounts = new Discounts {discount};
 
             _basket = new Basket(_prices, discounts);
             var total = _basket.Add("B").Add("B").Total();
@@ -33,7 +33,7 @@ namespace DecisionTech.Checkout.Tests.Unit
             _prices.Add("B", 20);
 
             var discount = Discount.CrossProductDiscount("B", 2, "A", 5);
-            var discounts = new List<Discount> {discount};
+            var discounts = new Discounts {discount};
 
             _basket = new Basket(_prices, discounts);
             var total = _basket.Add("B").Add("B").Add("A").Total();
