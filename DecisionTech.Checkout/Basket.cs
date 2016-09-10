@@ -22,7 +22,18 @@ namespace DecisionTech.Checkout
 
         public int Total()
         {
-            return _products.Sum(p => _prices[p]);
+            var total = _products.Sum(p => _prices[p]);
+            return total - Discount();
+        }
+
+        private int Discount()
+        {
+            int discount = 0;
+            if (_products.Count(p => p == "A") == 3)
+            {
+                discount = 5;
+            }
+            return discount;
         }
 
         public Basket Add(string product)
