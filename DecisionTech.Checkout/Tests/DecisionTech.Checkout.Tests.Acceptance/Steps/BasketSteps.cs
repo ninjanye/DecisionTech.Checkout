@@ -27,9 +27,15 @@ namespace DecisionTech.Checkout.Tests.Acceptance.Steps
             var discounts = new List<Discount>();
             foreach (var row in discountsTable.Rows)
             {
-                var volume = Convert.ToInt32(row["Volume"]);
-                var deduction = Convert.ToInt32(row["Discount"]);
-                discounts.Add(new Discount(row["Product"], volume, deduction));
+                var product = row["Product"];
+                int volume = Convert.ToInt32(row["Volume"]);
+                int deduction = Convert.ToInt32(row["Discount"]);
+                string productToDiscount = row["ProductToDiscount"];
+                var discount = string.IsNullOrEmpty(productToDiscount) ? 
+                    Discount.ProductDiscount(product, volume, deduction) : 
+                    Discount.CrossProductDiscount(product, volume, productToDiscount, deduction);
+                discounts.Add(discount);
+
             }
             ScenarioContext.Current["discounts"] = discounts;
         }

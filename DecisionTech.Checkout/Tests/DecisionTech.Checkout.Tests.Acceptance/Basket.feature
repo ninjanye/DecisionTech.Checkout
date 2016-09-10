@@ -11,8 +11,9 @@ Background:
 	| Butter | 80    |
 	| Milk   | 115   |
 	And I have the following discounts
-	| Product | Volume | Discount |
-	| Milk    | 4      | 115      |
+	| Product | Volume | Discount | ProductToDiscount |
+	| Milk    | 4      | 115      |                   |
+	| Butter  | 2      | 50       | Bread             |
 
 Scenario: Sum the price of the basket
 	Given The basket has 1 Bread
@@ -21,7 +22,6 @@ Scenario: Sum the price of the basket
 	When I total the basket
 	Then the total should be £2.95
 
-@ignore
 Scenario: Basket applies offers
 	Given the basket has 2 Butter
 	And 2 Bread

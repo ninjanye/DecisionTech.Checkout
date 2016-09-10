@@ -86,11 +86,18 @@ namespace DecisionTech.Checkout.Tests.Acceptance
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Product",
                         "Volume",
-                        "Discount"});
+                        "Discount",
+                        "ProductToDiscount"});
             table2.AddRow(new string[] {
                         "Milk",
                         "4",
-                        "115"});
+                        "115",
+                        ""});
+            table2.AddRow(new string[] {
+                        "Butter",
+                        "2",
+                        "50",
+                        "Bread"});
 #line 13
  testRunner.And("I have the following discounts", ((string)(null)), table2, "And ");
 #line hidden
@@ -101,19 +108,19 @@ namespace DecisionTech.Checkout.Tests.Acceptance
         public virtual void SumThePriceOfTheBasket()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sum the price of the basket", ((string[])(null)));
-#line 17
+#line 18
 this.ScenarioSetup(scenarioInfo);
 #line 7
 this.FeatureBackground();
-#line 18
- testRunner.Given("The basket has 1 Bread", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 19
- testRunner.And("1 Butter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("The basket has 1 Bread", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 20
- testRunner.And("1 Milk", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("1 Butter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 21
- testRunner.When("I total the basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("1 Milk", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 22
+ testRunner.When("I total the basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 23
  testRunner.Then("the total should be £2.95", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -121,11 +128,9 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Basket applies offers")]
-        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         public virtual void BasketAppliesOffers()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Basket applies offers", new string[] {
-                        "ignore"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Basket applies offers", ((string[])(null)));
 #line 25
 this.ScenarioSetup(scenarioInfo);
 #line 7

@@ -16,8 +16,8 @@ namespace DecisionTech.Checkout.Tests.Unit
             _prices.Add("A", 10);
             _prices.Add("B", 20);
 
-            var discountA = new Discount("A", 3, 5);
-            var discountB = new Discount("B", 2, 20);
+            var discountA = Discount.ProductDiscount("A", 3, 5);
+            var discountB = Discount.ProductDiscount("B", 2, 20);
             var discounts = new List<Discount> { discountA, discountB };
 
             _basket = new Basket(_prices, discounts);

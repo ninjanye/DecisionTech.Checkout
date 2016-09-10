@@ -10,14 +10,17 @@ namespace DecisionTech.Checkout
         private readonly string _productToDiscount;
         readonly int _deduction;
 
-        public Discount(string product, int volume, int deduction)
+        public static Discount ProductDiscount(string product, int volume, int deduction)
         {
-            _product = product;
-            _volume = volume;
-            _deduction = deduction;
+            return new Discount(product, volume, product, deduction);
         }
 
-        public Discount(string product, int volume, string productToDiscount, int deduction)
+        public static Discount CrossProductDiscount(string product, int volume, string productToDiscount, int deduction)
+        {
+            return new Discount(product, volume, productToDiscount, deduction);
+        }
+
+        private Discount(string product, int volume, string productToDiscount, int deduction)
         {
             _product = product;
             _volume = volume;
@@ -27,7 +30,7 @@ namespace DecisionTech.Checkout
 
         public int CalculateFor(ICollection<string> products)
         {
-            if (products.Contains(_productToDiscount))
+            if (!products.Contains(_productToDiscount))
             {
                 return 0;
             }
