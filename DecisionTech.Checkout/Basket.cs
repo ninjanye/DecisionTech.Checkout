@@ -8,16 +8,22 @@ namespace DecisionTech.Checkout
     {
         private readonly List<string> _products;
         private readonly Dictionary<string, int> _prices;
+        private readonly List<Discount> _discounts;
 
         public static Basket New(Dictionary<string, int> prices)
         {
-            return new Basket(prices, new List<string>());
+            return new Basket(prices, new List<Discount>(), new List<string>());
+        }
+        public static Basket New(Dictionary<string, int> prices, List<Discount> discounts)
+        {
+            return new Basket(prices, discounts, new List<string>());
         }
 
-        private Basket(Dictionary<string, int> prices, List<string> products = null)
+        private Basket(Dictionary<string, int> prices, List<Discount> discounts, List<string> products = null)
         {
             _prices = prices;
             _products = products ?? new List<string>();
+            _discounts = discounts;
         }
 
         public int Total()
@@ -28,24 +34,32 @@ namespace DecisionTech.Checkout
 
         private int Discount()
         {
-            int discount = 0;
-            if (_products.Count(p => p == "A") == 3)
-            {
-                discount = 5;
-            }
-
-            if (_products.Count(p => p == "B") == 4)
-            {
-                discount = 20;
-            }
-
-            return discount;
+            return _discounts.Sum(d => d.CalculateFor(_products));
         }
 
         public Basket Add(string product)
         {
             _products.Add(product);
-            return new Basket(_prices, _products);
+            return new Basket(_prices, _discounts, _products);
+        }
+    }
+
+    public class Discount
+    {
+        readonly string _product;
+        readonly int _volume;
+        readonly int _deduction;
+
+        public Discount(string product, int volume, int deduction)
+        {
+            _product = product;
+            _volume = volume;
+            _deduction = deduction;
+        }
+
+        public int CalculateFor(List<string> products)
+        {
+            return products.Count(p => p == _product) == _volume ? _deduction : 0;
         }
     }
 }

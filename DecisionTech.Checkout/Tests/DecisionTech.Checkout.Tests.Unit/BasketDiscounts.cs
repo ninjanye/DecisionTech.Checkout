@@ -16,19 +16,30 @@ namespace DecisionTech.Checkout.Tests.Unit
         [SetUp]
         public void SetUp()
         {
-            _basket = Basket.New(_prices);
+            var discountA = new Discount("A", 3, 5);
+            var discountB = new Discount("B", 2, 20);
+            _basket = Basket.New(_prices, new List<Discount> { discountA, discountB });
         }
 
         [TestCase("A", 3, 25)]
-        [TestCase("B", 4, 60)]
-        public void BasketAppliesDiscount(string product, int volume, int expected)
+        [TestCase("B", 2, 20)]
+        public void BasketAppliesDiscount(string product, int volume, int expectedTotal)
         {
             for (int i = 0; i < volume; i++)
             {
                 _basket.Add(product);
             }
             int total = _basket.Total();
-            Assert.That(total, Is.EqualTo(expected));
+            Assert.That(total, Is.EqualTo(expectedTotal));
         }
+
+        [Test]
+        public void BasketAppliesMultipleDiscounts()
+        {
+            _basket.Add("A").Add("A").Add("A").Add("B").Add("B");
+            int total = _basket.Total();
+            Assert.That(total, Is.EqualTo(45));
+        }
+
     }
 }
