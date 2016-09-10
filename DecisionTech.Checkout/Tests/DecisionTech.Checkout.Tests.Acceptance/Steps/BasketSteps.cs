@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
 
 namespace DecisionTech.Checkout.Tests.Acceptance.Steps
 {
@@ -24,8 +21,8 @@ namespace DecisionTech.Checkout.Tests.Acceptance.Steps
             ScenarioContext.Current["basket"] = Basket.New(prices);
         }
 
-        [Given(@"The basket has (.*) bread, (.*) butter, and (.*) milk")]
-        public void GivenTheBasketHasBreadButterAndMilk(int p0, int p1, int p2)
+        [Given(@"The basket has 1 bread, 1 butter, and 1 milk")]
+        public void GivenTheBasketHasBreadButterAndMilk()
         {
             var basket = ScenarioContext.Current.Get<Basket>("basket");
             basket.Add("Bread").Add("Butter").Add("Milk");
@@ -40,10 +37,10 @@ namespace DecisionTech.Checkout.Tests.Acceptance.Steps
         }
 
         [Then(@"the total should be £(.*)")]
-        public void ThenTheTotalShouldBe(Decimal p0)
+        public void ThenTheTotalShouldBe(Decimal expectedTotal)
         {
             var total = ScenarioContext.Current.Get<int>("total_cost");
-            Assert.That(total, Is.EqualTo(p0 * 100));
+            Assert.That(total, Is.EqualTo(expectedTotal * 100));
         }
     }
 }
