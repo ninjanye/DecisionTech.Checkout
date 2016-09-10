@@ -1,9 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace DecisionTech.Checkout
 {
-    public class Basket
+    public class Basket : IEnumerable<string>
     {
         private readonly ICollection<string> _products;
         private readonly PriceList _prices;
@@ -24,13 +25,23 @@ namespace DecisionTech.Checkout
 
         private int Discount()
         {
-            return _discounts.Sum(d => d.CalculateFor(_products));
+            return _discounts.Sum(d => d.CalculateFor(this));
         }
 
         public Basket Add(string product)
         {
             _products.Add(product);
             return this;
+        }
+
+        public IEnumerator<string> GetEnumerator()
+        {
+            return _products.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
